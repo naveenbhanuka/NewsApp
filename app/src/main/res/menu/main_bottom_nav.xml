@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_round_home"
         />
     <item
-        android:id="@+id/nav_isolations"
+        android:id="@+id/nav_favourite"
         android:title="@string/label_nav_favourite"
         android:icon="@drawable/ic_round_favorite"
         />
     <item
-        android:id="@+id/nav_notifications"
+        android:id="@+id/nav_profile"
         android:title="@string/label_nav_profile"
         android:icon="@drawable/ic_round_account"/>
 
