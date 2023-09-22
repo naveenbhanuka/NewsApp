@@ -8,4 +8,10 @@
     <string name="label_register">Register</string>
     <string name="label_not_have_account">Do not have an account ?</string>
     <string name="label_signUp">Sign Up</string>
+    <string name="label_first_name">First Name</string>
+    <string name="label_last_name">Last Name</string>
+    <string name="label_confirm_password">Confirm Password</string>
+    <string name="hint_first_name">Enter your First Name</string>
+    <string name="hint_last_name">Enter your Last Name</string>
+    <string name="label_have_account">Already have an account?</string>
 </resources>
