@@ -7,12 +7,13 @@ import androidx.core.content.ContextCompat
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityRegisterBinding
 import com.example.newsapp.utill.Msg
+import com.example.newsapp.utill.ResultCode
 import com.example.newsapp.utill.extenctions.alert
 import com.example.newsapp.utill.extenctions.isValidEmail
 import com.example.newsapp.utill.extenctions.setActionBar
 import com.example.newsapp.utill.extenctions.validateInput
 
-class RegisterActivity : AppCompatActivity(),View.OnClickListener {
+class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityRegisterBinding
 
@@ -64,9 +65,10 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
             textInputLayout = binding.inputConfirmPassword
         ) { s -> s.length >= 6 }
 
-        val isPasswordMatch = (binding.editPassword.text.toString() == binding.editConfirm.text.toString())
+        val isPasswordMatch =
+            (binding.editPassword.text.toString() == binding.editConfirm.text.toString())
 
-        if(!isFirstName){
+        if (!isFirstName) {
             alert(
                 Msg.TITLE_VALID_NAME_REQ,
                 Msg.VALID_NAME
@@ -76,7 +78,7 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
             }.show()
             return false
         }
-        if(!isLastName){
+        if (!isLastName) {
             alert(
                 Msg.TITLE_VALID_NAME_REQ,
                 Msg.VALID_NAME
@@ -87,7 +89,7 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
             return false
         }
 
-        if(!isEmail){
+        if (!isEmail) {
             alert(
                 Msg.TITLE_VALID_EMAIL_REQ,
                 Msg.VALID_EMAIL
@@ -98,7 +100,7 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
             return false
         }
 
-        if(!isPassword){
+        if (!isPassword) {
             alert(
                 Msg.TITLE_VALID_PASSWORD_REQ,
                 Msg.VALID_PASSWORD
@@ -109,7 +111,7 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
             return false
         }
 
-        if(!isConfirmPassword){
+        if (!isConfirmPassword) {
             alert(
                 Msg.TITLE_VALID_PASSWORD_REQ,
                 Msg.VALID_PASSWORD
@@ -120,7 +122,7 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
             return false
         }
 
-        if(!isPasswordMatch){
+        if (!isPasswordMatch) {
             alert(
                 Msg.TITLE_PASSWORD_MATCH,
                 Msg.MATCH_PASSWORD
@@ -136,7 +138,7 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        when(view?.id){
+        when (view?.id) {
             R.id.button_sign_up -> if (isValidForm()) {
                 signUp()
             }
@@ -144,6 +146,6 @@ class RegisterActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun signUp() {
-
+        setResult(ResultCode.RESULT_NAV_MAIN).also { finish() }
     }
 }

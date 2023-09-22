@@ -30,6 +30,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".presentation.register.RegisterActivity"
+            android:parentActivityName=".presentation.login.LoginActivity"
             android:exported="false"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

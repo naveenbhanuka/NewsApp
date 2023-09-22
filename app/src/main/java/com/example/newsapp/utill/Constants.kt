@@ -1,7 +1,6 @@
 package com.example.newsapp.utill
 
 object Msg {
-
     const val TITLE_VALID_EMAIL_REQ = "Valid Email Required"
     const val VALID_EMAIL = "Please enter a valid email address"
     const val BUTTON_OK = "Ok"
@@ -11,4 +10,15 @@ object Msg {
     const val VALID_NAME = "Please enter a valid name"
     const val TITLE_PASSWORD_MATCH = "Password doesn't match"
     const val MATCH_PASSWORD = "Please confirm your passwords correctly"
+}
+
+object RequestCodes {
+    const val LOGIN = 100
+    const val REGISTRATION = 101
+    const val MAIN = 102
+}
+
+object ResultCode {
+    const val RESULT_NAV_MAIN = 111
+    const val RESULT_NAV_LOGIN = 112
 }
