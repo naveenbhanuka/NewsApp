@@ -10,6 +10,9 @@ object Msg {
     const val VALID_NAME = "Please enter a valid name"
     const val TITLE_PASSWORD_MATCH = "Password doesn't match"
     const val MATCH_PASSWORD = "Please confirm your passwords correctly"
+    const val ALERT = "Alert"
+    const val ALERT_LOGIN_FAILED = "Login Failed"
+    const val ALERT_REGISTRATION_FAILED = "Registration Failed"
 }
 
 object RequestCodes {
@@ -21,4 +24,9 @@ object RequestCodes {
 object ResultCode {
     const val RESULT_NAV_MAIN = 111
     const val RESULT_NAV_LOGIN = 112
+}
+
+object Constant {
+    const val DATABASE_NAME ="news_database"
+    const val USER_TABLE ="user_table"
 }

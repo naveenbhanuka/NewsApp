@@ -2,11 +2,15 @@ package com.example.newsapp.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityLoginBinding
+import com.example.newsapp.domain.model.User
 import com.example.newsapp.presentation.main.MainActivity
 import com.example.newsapp.presentation.register.RegisterActivity
 import com.example.newsapp.utill.Msg
@@ -15,17 +19,35 @@ import com.example.newsapp.utill.ResultCode
 import com.example.newsapp.utill.extenctions.alert
 import com.example.newsapp.utill.extenctions.isValidEmail
 import com.example.newsapp.utill.extenctions.validateInput
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityLoginBinding
+    private val vm by viewModel<LoginViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initUI()
+        vm.loginResult.observe(this, Observer { observerLogin(it) })
 
+    }
+
+    private fun observerLogin(result: Result<User>) {
+        if (result.isSuccess){
+            gotoMain()
+        }else{
+            alert(
+                Msg.ALERT,
+                Msg.ALERT_LOGIN_FAILED
+            ) {
+                positiveButton(Msg.BUTTON_OK) {
+                }
+            }.show()
+        }
     }
 
     private fun initUI() {
@@ -39,9 +61,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         when (view?.id) {
             R.id.text_sign_up -> gotoSignUp()
             R.id.button_sign_in -> if (isValidForm()) {
-                gotoMain()
+               login()
             }
         }
+    }
+
+    private fun login() {
+        val email = binding.editEmail.text.toString()
+        val password = binding.editPassword.text.toString()
+        vm.loginUser(email = email, password = password)
     }
 
     private fun isValidForm(): Boolean {

@@ -2,20 +2,25 @@ package com.example.newsapp.presentation.register
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityRegisterBinding
+import com.example.newsapp.presentation.login.LoginViewModel
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.ResultCode
 import com.example.newsapp.utill.extenctions.alert
 import com.example.newsapp.utill.extenctions.isValidEmail
 import com.example.newsapp.utill.extenctions.setActionBar
 import com.example.newsapp.utill.extenctions.validateInput
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityRegisterBinding
+    private val vm by viewModel<RegisterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +30,23 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         initUI()
 
+        vm.registrationResult.observe(this, Observer { observerRegister(it) })
 
+
+    }
+
+    private fun observerRegister(result: Result<Unit>) {
+        if (result.isSuccess){
+            setResult(ResultCode.RESULT_NAV_MAIN).also { finish() } //go to home
+        }else{
+            alert(
+                Msg.ALERT,
+                Msg.ALERT_REGISTRATION_FAILED
+            ) {
+                positiveButton(Msg.BUTTON_OK) {
+                }
+            }.show()
+        }
     }
 
     private fun initUI() {
@@ -146,6 +167,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun signUp() {
-        setResult(ResultCode.RESULT_NAV_MAIN).also { finish() }
+        val firstName = binding.editFirstName.text.toString()
+        val lastName = binding.editLastName.text.toString()
+        val email = binding.editEmail.text.toString()
+        val password = binding.editPassword.text.toString()
+
+        vm.registerUser(firstName = firstName, lastName = lastName, email = email, password = password)
     }
 }
