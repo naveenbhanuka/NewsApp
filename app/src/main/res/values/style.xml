@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    TextStyles-->
+
+    <!--Semi-Bold-->
+
+    <style name="colorBlackSemiBoldStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontFamily">@font/nunito_semi_bold</item>
+    </style>
+
+    <style name="colorPrimaryBlueSemiBoldStyle">
+        <item name="android:textColor">@color/colorPrimaryBlue</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontFamily">@font/nunito_semi_bold</item>
+    </style>
+
+    <style name="colorBlackSemiBoldStyle.Size14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="colorPrimaryBlueSemiBoldStyle.Size14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+    <!--Regular-->
+
+    <style name="textErrorTextRRegularStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">0sp</item>
+    </style>
+
+
+    <!--    EditText-->
+
+    <style name="editTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/bg_white_edit_text</item>
+        <item name="android:fontFamily">@font/nunito_semi_bold</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15dp</item>
+    </style>
+
+    <!--    Button-->
+
+    <style name="primaryButtonStyle">
+        <item name="fontFamily">@font/nunito_semi_bold</item>
+        <item name="android:background">@drawable/bg_blue_btn</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minWidth">140dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>
