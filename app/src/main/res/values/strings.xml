@@ -14,4 +14,7 @@
     <string name="hint_first_name">Enter your First Name</string>
     <string name="hint_last_name">Enter your Last Name</string>
     <string name="label_have_account">Already have an account?</string>
+    <string name="label_nav_home">Home</string>
+    <string name="label_nav_favourite">Favourite</string>
+    <string name="label_nav_profile">Profile</string>
 </resources>

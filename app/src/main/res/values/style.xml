@@ -82,4 +82,18 @@
         <item name="android:minWidth">140dp</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <!--    Navigation bar text style-->
+
+    <style name="navBarTextAppearanceActive" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+        <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="navBarTextAppearanceInactive" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorLightGray</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">9sp</item>
+    </style>
 </resources>

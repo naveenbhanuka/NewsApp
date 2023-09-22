@@ -8,4 +8,5 @@
     <color name="colorGray">#4E4E4E</color>
     <color name="colorWhiteGray">#DEDFDF</color>
     <color name="colorPrimaryBlue">#47C7F1</color>
+    <color name="colorLightGray">#CCCCCC</color>
 </resources>
