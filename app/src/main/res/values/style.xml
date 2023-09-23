@@ -76,6 +76,10 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="colorBlackBoldStyle.Size14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
 
     <!--Regular-->
 
@@ -97,11 +101,21 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="colorBlackRegularStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="colorGrayRegularStyle.Size14">
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="colorDarkGrayRegularStyle.Size14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="colorBlackRegularStyle.Size14">
         <item name="android:textSize">14sp</item>
     </style>
 

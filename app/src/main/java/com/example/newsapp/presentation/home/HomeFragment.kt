@@ -9,19 +9,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.R
 import com.example.newsapp.data.datasource.dto.Article
 import com.example.newsapp.data.datasource.dto.NewsResponse
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.presentation.adapters.FilterAdapter
 import com.example.newsapp.presentation.adapters.LatestNewsAdapter
 import com.example.newsapp.presentation.adapters.NewsAdapter
+import com.example.newsapp.presentation.view_latest_news.ViewLatestNews
 import com.example.newsapp.presentation.view_news.ViewNewsActivity
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.OnItemClickListener {
+class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.OnItemClickListener,View.OnClickListener {
 
     companion object {
         const val TAG = "homeFragment"
@@ -46,9 +48,15 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerViews()
+        initUI()
 
         vm.latestNews.observe(viewLifecycleOwner, Observer { observerGetLatestNews(it) })
         vm.getAllNews.observe(viewLifecycleOwner, Observer { observerGetAllNews(it) })
+    }
+
+    private fun initUI() {
+        binding.tvLabelSeeAllLatestNews.setOnClickListener(this)
+        binding.ivSeeAll.setOnClickListener(this)
     }
 
     private fun observerGetAllNews(resource: Resource<NewsResponse>) {
@@ -165,6 +173,16 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
             putExtra("object", article)
             requireActivity().startActivity(this)
         }
+    }
+
+    override fun onClick(view: View?) {
+        when(view?.id){
+            R.id.tv_label_see_all_latest_news, R.id.iv_see_all -> gotoViewAllNews()
+        }
+    }
+
+    private fun gotoViewAllNews() {
+        startActivity(Intent(requireContext(),ViewLatestNews::class.java))
     }
 
 }

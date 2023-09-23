@@ -42,7 +42,7 @@ fun ActionBar.setActionBar(
 
     //set font family
   //  tv.typeface = Typeface.DEFAULT_BOLD
-    val myCustomFont: Typeface? = ResourcesCompat.getFont(context, R.font.nunito_semi_bold)
+    val myCustomFont: Typeface? = ResourcesCompat.getFont(context, R.font.nunito_bold)
     tv.typeface = myCustomFont
 
 

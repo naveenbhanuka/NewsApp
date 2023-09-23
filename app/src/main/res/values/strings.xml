@@ -25,4 +25,6 @@
     <string name="label_finance">Finance</string>
     <string name="label_art">Art</string>
     <string name="label_country">Country</string>
+    <string name="label_read_more">Read More</string>
+    <string name="label_hot_updates">Hot Updates</string>
 </resources>
