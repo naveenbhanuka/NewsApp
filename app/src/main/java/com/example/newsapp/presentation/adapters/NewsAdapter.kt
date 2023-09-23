@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.newsapp.data.datasource.dto.Article
 import com.example.newsapp.databinding.ItemNewsBinding
 import com.example.newsapp.domain.model.DArticle
 
@@ -15,19 +16,19 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     ) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object : DiffUtil.ItemCallback<DArticle>() {
-        override fun areItemsTheSame(oldItem: DArticle, newItem: DArticle): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<Article>() {
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
         }
 
-        override fun areContentsTheSame(oldItem: DArticle, newItem: DArticle): Boolean {
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
     }
 
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<DArticle>) = differ.submitList(list)
+    fun submitList(list: List<Article>) = differ.submitList(list)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         return NewsViewHolder(
@@ -38,13 +39,13 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-//        val article = differ.currentList[position]
-//        holder.binding.apply {
-//            tvNewsTitle.text = article.title
-//            tvAuthor.text = article.author
-//            tvPublishDate.text = article.publishedAt
-//        }
+        val article = differ.currentList[position]
+        holder.binding.apply {
+            tvNewsTitle.text = article.title
+            tvAuthor.text = article.author
+            tvPublishDate.text = article.publishedAt
+        }
     }
 
-    override fun getItemCount() =  10 /*differ.currentList.size*/
+    override fun getItemCount() =   differ.currentList.size
 }

@@ -1,9 +1,14 @@
 package com.example.newsapp.di
 
 import com.example.newsapp.data.datasource.NewsDatabase
+import com.example.newsapp.data.datasource.RetrofitInstance
+import com.example.newsapp.data.repository.NewsRepositoryImpl
 import com.example.newsapp.data.repository.UserRepositoryImpl
+import com.example.newsapp.domain.repository.NewsRepository
 import com.example.newsapp.domain.repository.UserRepository
+import com.example.newsapp.domain.usecase.NewsUseCase
 import com.example.newsapp.domain.usecase.UserUseCase
+import com.example.newsapp.presentation.home.HomeViewModel
 import com.example.newsapp.presentation.login.LoginViewModel
 import com.example.newsapp.presentation.register.RegisterViewModel
 import org.koin.android.ext.koin.androidContext
@@ -28,21 +33,29 @@ private val loadFeature by lazy {
 val networkModule = module {
     single { NewsDatabase.getDatabase(androidContext()) }
     single { get<NewsDatabase>().userDao() }
+    single { RetrofitInstance.api }
 }
 
 val viewModelModule: Module = module {
     viewModel { LoginViewModel(userUseCase = get()) }
     viewModel { RegisterViewModel(userUseCase = get()) }
+    viewModel { HomeViewModel(newsUseCase = get()) }
 }
 
 val useCaseModule: Module = module {
     factory { UserUseCase(repository = get()) }
+    factory { NewsUseCase( newsRepository = get()) }
 }
 
 val repositoryModule: Module = module {
     single<UserRepository> {
         UserRepositoryImpl(
             dao = get()
+        )
+    }
+    single<NewsRepository> {
+        NewsRepositoryImpl(
+            newsApi = get()
         )
     }
 }
