@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.newsapp.data.datasource.dto.Article
 import com.example.newsapp.databinding.ItemLatestNewsBinding
 import com.example.newsapp.domain.model.DArticle
@@ -44,6 +45,7 @@ class LatestNewsAdapter : RecyclerView.Adapter<LatestNewsAdapter.LatestNewsViewH
             tvTitle.text = article.title
             tvDescription.text = article.description
             tvSource.text = article.source.name
+            Glide.with(holder.binding.root).load(article.urlToImage).into(ivArticleImage)
         }
     }
 
