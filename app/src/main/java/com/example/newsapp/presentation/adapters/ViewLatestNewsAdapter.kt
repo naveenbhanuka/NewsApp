@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.newsapp.data.datasource.dto.Article
 import com.example.newsapp.databinding.ItemViewNewsBinding
 
-class ViewNewsAdapter : RecyclerView.Adapter<ViewNewsAdapter.ViewNewsAdapterViewHolder>() {
+class ViewLatestNewsAdapter : RecyclerView.Adapter<ViewLatestNewsAdapter.ViewNewsAdapterViewHolder>() {
 
     inner class ViewNewsAdapterViewHolder(
         val binding: ItemViewNewsBinding

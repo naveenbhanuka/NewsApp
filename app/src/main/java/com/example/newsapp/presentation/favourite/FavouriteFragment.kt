@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentFavouriteBinding
-import com.example.newsapp.presentation.home.HomeFragment
+import com.example.newsapp.presentation.adapters.ViewLatestNewsAdapter
+import com.example.newsapp.utill.extenctions.setActionBar
 
 class FavouriteFragment : Fragment() {
 
@@ -16,6 +19,7 @@ class FavouriteFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentFavouriteBinding
+    private lateinit var viewLatestNewsAdapter: ViewLatestNewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +32,20 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private fun setupRecyclerView() {
+        viewLatestNewsAdapter = ViewLatestNewsAdapter()
+
+        binding.rvFavouriteNews.apply {
+            adapter = viewLatestNewsAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+        }
     }
+
 }

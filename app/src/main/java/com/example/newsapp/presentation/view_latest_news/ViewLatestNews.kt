@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityViewLatestNewsBinding
-import com.example.newsapp.presentation.adapters.ViewNewsAdapter
+import com.example.newsapp.presentation.adapters.ViewLatestNewsAdapter
 import com.example.newsapp.utill.extenctions.setActionBar
 
 class ViewLatestNews : AppCompatActivity() {
 
     private lateinit var binding: ActivityViewLatestNewsBinding
-    private lateinit var viewNewsAdapter: ViewNewsAdapter
+    private lateinit var viewLatestNewsAdapter: ViewLatestNewsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +30,10 @@ class ViewLatestNews : AppCompatActivity() {
             true
         )
 
-        viewNewsAdapter = ViewNewsAdapter()
+        viewLatestNewsAdapter = ViewLatestNewsAdapter()
 
         binding.rvViewNews.apply {
-            adapter = viewNewsAdapter
+            adapter = viewLatestNewsAdapter
             layoutManager = LinearLayoutManager(
                 this@ViewLatestNews,
                 LinearLayoutManager.VERTICAL,
