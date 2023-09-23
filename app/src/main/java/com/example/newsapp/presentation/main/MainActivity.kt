@@ -21,8 +21,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
 
+        openHome()
         initBottomNavigation()
 
+    }
+
+    private fun openHome() {
+        supportFragmentManager.replaceFragment(
+            R.id.fl_main,
+            HomeFragment.newInstance(),
+            HomeFragment.TAG
+        )
     }
 
     private fun initBottomNavigation() {
