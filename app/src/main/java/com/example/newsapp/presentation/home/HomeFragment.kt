@@ -1,5 +1,6 @@
 package com.example.newsapp.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,17 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.data.datasource.dto.Article
 import com.example.newsapp.data.datasource.dto.NewsResponse
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.presentation.adapters.FilterAdapter
 import com.example.newsapp.presentation.adapters.LatestNewsAdapter
 import com.example.newsapp.presentation.adapters.NewsAdapter
+import com.example.newsapp.presentation.view_news.ViewNewsActivity
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener {
+class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.OnItemClickListener {
 
     companion object {
         const val TAG = "homeFragment"
@@ -135,7 +138,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener {
             )
         }
 
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(this)
 
         binding.rvNews.apply {
             adapter = newsAdapter
@@ -154,6 +157,10 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener {
     override fun onResume() {
         super.onResume()
         vm.getLatestNews()
+    }
+
+    override fun onNewsClick(article: Article) {
+        startActivity(Intent(requireContext(),ViewNewsActivity::class.java))
     }
 
 }

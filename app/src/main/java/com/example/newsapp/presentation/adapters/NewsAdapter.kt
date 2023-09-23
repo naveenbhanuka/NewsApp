@@ -13,7 +13,9 @@ import com.example.newsapp.utill.extenctions.DD_MMMM_EEEE
 import com.example.newsapp.utill.extenctions.DD_MMMM_yy
 import com.example.newsapp.utill.extenctions.toCustomDate
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(
+    val onClickListener: OnItemClickListener
+) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     inner class NewsViewHolder(
         val binding: ItemNewsBinding
@@ -50,7 +52,14 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
             tvPublishDate.text = article.publishedAt.toCustomDate(DD_MMMM_yy)
             Glide.with(holder.binding.root).load(article.urlToImage).into(ivNewsArticleImage)
         }
+        holder.binding.root.setOnClickListener {
+            onClickListener.onNewsClick(article)
+        }
     }
 
     override fun getItemCount() =   differ.currentList.size
+
+    interface OnItemClickListener {
+        fun onNewsClick(article: Article)
+    }
 }
