@@ -1,6 +1,7 @@
 package com.example.newsapp.domain.model
 
 import com.example.newsapp.data.datasource.dto.Source
+import java.io.Serializable
 
 data class DArticle(
     val author: String,
@@ -11,4 +12,4 @@ data class DArticle(
     val title: String,
     val url: String,
     val urlToImage: String
-)
+) : Serializable

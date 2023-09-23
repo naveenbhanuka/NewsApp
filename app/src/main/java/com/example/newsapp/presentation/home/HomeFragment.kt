@@ -2,6 +2,7 @@ package com.example.newsapp.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -160,7 +161,10 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
     }
 
     override fun onNewsClick(article: Article) {
-        startActivity(Intent(requireContext(),ViewNewsActivity::class.java))
+        Intent(requireContext(), ViewNewsActivity::class.java).apply {
+            putExtra("object", article)
+            requireActivity().startActivity(this)
+        }
     }
 
 }

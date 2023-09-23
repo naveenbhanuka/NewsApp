@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="20dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum accumsan tellus nec libero dapibus, eget lacinia odio hendrerit. Sed eu velit vel mi fermentum cursus sed eu ipsum. Nullam commodo, dui in auctor consectetur, ligula odio tristique justo, sit amet suscipit massa tortor a libero. Vestibulum ut congue neque, vel fringilla ligula. Nulla facilisi. Sed auctor justo eu justo tincidunt, eget eleifend libero congue. Sed bibendum augue et tristique scelerisque. Duis euismod, ante quis tempus varius, odio libero facilisis ipsum, a feugiat erat quam non lorem. Nunc hendrerit nec enim a ultricies. Phasellus facilisis arcu vitae odio vestibulum, vel consectetur felis malesuada. Integer a dui sit amet orci vehicula cursus. Sed ac suscipit justo. Phasellus at lorem eget odio elementum ultrices. Sed venenatis arcu in enim elementum, a congue eros bibendum."
@@ -47,7 +47,7 @@
         android:layout_height="150dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bg_news_details"
         app:layout_constraintBottom_toBottomOf="@+id/iv_news_image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_source"
             style="@style/colorBlackBoldStyle.Size16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_source"
+            android:id="@+id/tv_title"
             style="@style/colorBlackSemiBoldStyle.Size14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:text="Vestibulum accumsaendrerit. Sed eu velit vel mi fermentum cursus sed eu "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_source" />
 
         <TextView
             android:id="@+id/tv_author"
@@ -90,16 +90,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="8dp"
-            android:text="Duis euismod"
+            android:layout_marginBottom="10dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="Duis euismod"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_source" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
