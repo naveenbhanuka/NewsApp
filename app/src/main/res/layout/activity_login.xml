@@ -18,13 +18,13 @@
 
             <ImageView
                 android:id="@+id/iv_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/reporter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_label_email"

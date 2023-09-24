@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/white" />
+            <corners android:radius="8dp"/>
+            <padding android:left="44dp"
+                android:top="44dp"
+                android:bottom="44dp"
+                android:right="44dp"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_round_person"
+        android:gravity="center_horizontal"
+        android:width="81dp"
+        android:height="81dp"/>
+</layer-list>
