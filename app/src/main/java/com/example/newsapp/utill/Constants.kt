@@ -32,7 +32,8 @@ object ResultCode {
 object Constant {
     const val DATABASE_NAME ="news_database"
     const val USER_TABLE ="user_table"
-    const val API_KEY = "bc3ae8bf9ce746988cc0dd9cfe10b442"
+   // const val API_KEY = "bc3ae8bf9ce746988cc0dd9cfe10b442"
     const val BASE_URL = "https://newsapi.org"
     const val ARTICLE_TABLE ="article_table"
+    const val API_KEY = "3b5e001b1093405c8dd7f8bd0b31083d"
 }

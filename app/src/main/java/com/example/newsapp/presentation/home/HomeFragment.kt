@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +22,8 @@ import com.example.newsapp.presentation.view_news.ViewNewsActivity
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
+import com.example.newsapp.utill.extenctions.gone
+import com.example.newsapp.utill.extenctions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.OnItemClickListener,
@@ -52,6 +56,48 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
 
         vm.latestNews.observe(viewLifecycleOwner, Observer { observerGetLatestNews(it) })
         vm.getAllNews.observe(viewLifecycleOwner, Observer { observerGetAllNews(it) })
+
+        binding.etSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                getNews(query).also {
+                    updateUI(query)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) {
+                    handleSearchTextCleared()
+                }
+                return false
+            }
+
+        }
+        )
+    }
+
+    private fun updateUI(query: String?) {
+        showProgressBar()
+        binding.tvLabelLatestNews.gone()
+        binding.tvLabelSeeAllLatestNews.gone()
+        binding.ivSeeAll.gone()
+        binding.rvLatestNews.gone()
+        binding.rvFilters.gone()
+        binding.tvLabelSearchResults.visible()
+        binding.tvLabelSearchResults.text = "About ${newsAdapter.itemCount} results for $query"
+        hideProgressBar()
+    }
+
+    private fun handleSearchTextCleared() {
+        showProgressBar()
+        binding.tvLabelLatestNews.visible()
+        binding.tvLabelSeeAllLatestNews.visible()
+        binding.ivSeeAll.visible()
+        binding.rvLatestNews.visible()
+        binding.rvFilters.visible()
+        binding.tvLabelSearchResults.gone()
+        getNews("Health")
+        hideProgressBar()
     }
 
     private fun initUI() {
@@ -73,7 +119,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
                 resource.message?.let { message ->
                     alert(
                         Msg.ALERT,
-                        message
+                        Msg.SOMETHING_WRONG
                     ) {
                         positiveButton(Msg.BUTTON_OK) {
                         }
@@ -103,7 +149,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
                 resource.message?.let { message ->
                     alert(
                         Msg.ALERT,
-                        message
+                        Msg.SOMETHING_WRONG
                     ) {
                         positiveButton(Msg.BUTTON_OK) {
                         }

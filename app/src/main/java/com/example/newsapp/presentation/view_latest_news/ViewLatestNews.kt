@@ -46,7 +46,7 @@ class ViewLatestNews : AppCompatActivity() {
                 resource.message?.let { message ->
                     alert(
                         Msg.ALERT,
-                        message
+                        Msg.SOMETHING_WRONG
                     ) {
                         positiveButton(Msg.BUTTON_OK) {
                         }

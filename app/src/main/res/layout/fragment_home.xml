@@ -14,9 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+            <SearchView
                 android:id="@+id/et_search"
-                style="@style/editTextSearchStyle"
+                android:background="@drawable/bg_search"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="16dp"
@@ -25,7 +25,6 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:hint="@string/hint_search"
-                android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
@@ -41,6 +40,19 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/label_latest_news"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_search" />
+
+            <TextView
+                android:id="@+id/tv_label_search_results"
+                style="@style/colorBlackRegularStyle.Size14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:text="About 1920 results for Sri Lanka "
+                android:visibility="invisible"
+                android:paddingBottom="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_search" />
 
@@ -79,7 +91,7 @@
                 android:clipToPadding="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_label_latest_news" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_label_search_results" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_filters"
