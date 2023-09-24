@@ -1,6 +1,5 @@
 package com.example.newsapp.data.datasource
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,6 +12,6 @@ interface ArticleDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveArticle(article: Article)
 
-    @Query("SELECT * FROM article_table")
-    suspend fun getAllArticles(): List<Article>
+    @Query("SELECT * FROM article_table WHERE userId = :userId")
+    suspend fun getAllArticles(userId: String): List<Article>
 }

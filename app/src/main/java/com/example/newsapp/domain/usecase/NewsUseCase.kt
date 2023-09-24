@@ -18,5 +18,5 @@ class NewsUseCase(
 
     suspend fun saveArticle(article: Article) = newsRepository.saveArticle(article= article)
 
-    suspend fun getAllArticles() : List<Article> = newsRepository.getAllArticles()
+    suspend fun getAllArticles(userId: String) : List<Article> = newsRepository.getAllArticles(userId = userId)
 }

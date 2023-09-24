@@ -27,7 +27,7 @@ class NewsRepositoryImpl(
         newsApi.getAllNews(searchQuery = searchQuery, pageNumber = pageNumber)
 
     override suspend fun saveArticle(article: Article) = articleDao.saveArticle(article = article)
-    override suspend fun getAllArticles(): List<Article> =
-        articleDao.getAllArticles()
+    override suspend fun getAllArticles(userId: String): List<Article> =
+        articleDao.getAllArticles(userId = userId)
 
 }

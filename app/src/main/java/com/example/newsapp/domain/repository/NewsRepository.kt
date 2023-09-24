@@ -13,5 +13,5 @@ interface NewsRepository {
 
     suspend fun saveArticle(article: Article)
 
-    suspend fun getAllArticles() : List<Article>
+    suspend fun getAllArticles(userId: String) : List<Article>
 }

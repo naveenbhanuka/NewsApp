@@ -71,7 +71,16 @@ class FavouriteFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        vm.getSavedNews()
+        getSavedNews()
+
+    }
+
+    private fun getSavedNews() {
+        val user = vm.getUser(requireContext())
+        user?.id.let {
+            vm.getSavedNews(userId = it.toString())
+        }
+
     }
 
 }

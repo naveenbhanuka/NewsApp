@@ -75,6 +75,8 @@ class ViewNewsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun saveArticle() {
+        val user = vm.getUser(this)
+        article?.userId = user?.id.toString()
         article?.let { vm.saveArticle(article = it) }
     }
 }

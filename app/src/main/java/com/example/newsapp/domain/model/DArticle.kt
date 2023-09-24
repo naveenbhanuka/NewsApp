@@ -5,6 +5,7 @@ import java.io.Serializable
 
 data class DArticle(
     val id:Int? = null,
+    val userId: String,
     val author: String,
     val content: String,
     val description: String,
