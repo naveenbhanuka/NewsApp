@@ -61,6 +61,10 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
         vm.latestNews.observe(viewLifecycleOwner, Observer { observerGetLatestNews(it) })
         vm.getAllNews.observe(viewLifecycleOwner, Observer { observerGetAllNews(it) })
 
+        handleSearchView()
+    }
+
+    private fun handleSearchView() {
         binding.etSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 getNews(query).also {
