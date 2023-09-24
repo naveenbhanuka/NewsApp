@@ -18,6 +18,7 @@ import com.example.newsapp.presentation.adapters.LatestNewsAdapter
 import com.example.newsapp.presentation.adapters.NewsAdapter
 import com.example.newsapp.presentation.view_latest_news.ViewLatestNews
 import com.example.newsapp.presentation.view_news.ViewNewsActivity
+import com.example.newsapp.utill.Constant
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
@@ -94,7 +95,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
                 resource.data?.let { newsResponse ->
                     latestNewsAdapter.submitList(newsResponse.articles)
                 }.also {
-                      vm.getAllNews("null")
+                     getNews(getString(R.string.label_health))
                 }
             }
 
@@ -125,7 +126,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
         filters.add("Art")
         filters.add("Country")
 
-        filterAdapter = FilterAdapter(filters, this)
+        filterAdapter = FilterAdapter(requireContext(),filters, this)
 
         binding.rvFilters.apply {
             adapter = filterAdapter
@@ -160,7 +161,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
     }
 
     override fun onFilterClick(item: String) {
-
+        getNews(item)
     }
 
     override fun onResume() {
@@ -185,4 +186,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
         startActivity(Intent(requireContext(),ViewLatestNews::class.java))
     }
 
+    private fun getNews(filters:String?){
+       vm.getAllNews(filters)
+    }
 }
