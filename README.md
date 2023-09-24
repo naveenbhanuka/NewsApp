@@ -29,7 +29,7 @@ News App is an Android application developed in Kotlin that provides users with 
 
 To get started with the News App, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/yourusername/news-app.git`
+1. Clone the repository
 2. Open the project in Android Studio.
 3. Build and run the app on an Android emulator or physical device.
 
