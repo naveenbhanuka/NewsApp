@@ -4,6 +4,7 @@ import com.example.newsapp.data.datasource.dto.Source
 import java.io.Serializable
 
 data class DArticle(
+    val id:Int? = null,
     val author: String,
     val content: String,
     val description: String,

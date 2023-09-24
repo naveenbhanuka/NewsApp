@@ -8,9 +8,11 @@ import com.example.newsapp.domain.repository.NewsRepository
 import com.example.newsapp.domain.repository.UserRepository
 import com.example.newsapp.domain.usecase.NewsUseCase
 import com.example.newsapp.domain.usecase.UserUseCase
+import com.example.newsapp.presentation.favourite.FavouriteViewModel
 import com.example.newsapp.presentation.home.HomeViewModel
 import com.example.newsapp.presentation.login.LoginViewModel
 import com.example.newsapp.presentation.register.RegisterViewModel
+import com.example.newsapp.presentation.view_news.ViewNewsViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -34,12 +36,15 @@ val networkModule = module {
     single { NewsDatabase.getDatabase(androidContext()) }
     single { get<NewsDatabase>().userDao() }
     single { RetrofitInstance.api }
+    single { get<NewsDatabase>().articleDao() }
 }
 
 val viewModelModule: Module = module {
     viewModel { LoginViewModel(userUseCase = get()) }
     viewModel { RegisterViewModel(userUseCase = get()) }
     viewModel { HomeViewModel(newsUseCase = get()) }
+    viewModel { ViewNewsViewModel(newsUseCase = get()) }
+    viewModel { FavouriteViewModel(newsUseCase = get()) }
 }
 
 val useCaseModule: Module = module {
@@ -55,7 +60,8 @@ val repositoryModule: Module = module {
     }
     single<NewsRepository> {
         NewsRepositoryImpl(
-            newsApi = get()
+            newsApi = get(),
+            articleDao = get()
         )
     }
 }

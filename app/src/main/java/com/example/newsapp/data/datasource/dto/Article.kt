@@ -1,8 +1,14 @@
 package com.example.newsapp.data.datasource.dto
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.newsapp.utill.Constant
 import java.io.Serializable
 
+@Entity(tableName = Constant.ARTICLE_TABLE)
 data class Article(
+    @PrimaryKey(autoGenerate = true)
+    val id:Int? = null,
     val author: String,
     val content: String,
     val description: String,

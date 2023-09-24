@@ -6,6 +6,7 @@ import com.example.newsapp.data.datasource.dto.NewsResponse
 
 fun Article.mapToDomain() : DArticle =
     DArticle(
+        id = id,
         author = author,
         content = content,
         description = description,

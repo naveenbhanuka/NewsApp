@@ -13,6 +13,9 @@ object Msg {
     const val ALERT = "Alert"
     const val ALERT_LOGIN_FAILED = "Login Failed"
     const val ALERT_REGISTRATION_FAILED = "Registration Failed"
+    const val SOMETHING_WRONG = "Something went wrong..."
+    const val SUCCESS = "Success"
+    const val SAVE_TO_FAVOURITE = "Successfully added to Favourites"
 }
 
 object RequestCodes {
@@ -31,4 +34,5 @@ object Constant {
     const val USER_TABLE ="user_table"
     const val API_KEY = "bc3ae8bf9ce746988cc0dd9cfe10b442"
     const val BASE_URL = "https://newsapi.org"
+    const val ARTICLE_TABLE ="article_table"
 }

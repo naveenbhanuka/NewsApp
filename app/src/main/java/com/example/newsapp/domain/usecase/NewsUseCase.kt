@@ -1,5 +1,7 @@
 package com.example.newsapp.domain.usecase
 
+import androidx.lifecycle.LiveData
+import com.example.newsapp.data.datasource.dto.Article
 import com.example.newsapp.data.datasource.dto.NewsResponse
 import com.example.newsapp.domain.repository.NewsRepository
 import retrofit2.Response
@@ -13,4 +15,8 @@ class NewsUseCase(
 
     suspend fun getAllNews(searchQuery: String?, pageNumber: Int): Response<NewsResponse> =
         newsRepository.getAllNews(searchQuery = searchQuery, pageNumber = pageNumber)
+
+    suspend fun saveArticle(article: Article) = newsRepository.saveArticle(article= article)
+
+    suspend fun getAllArticles() : List<Article> = newsRepository.getAllArticles()
 }
