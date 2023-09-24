@@ -39,6 +39,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
     private lateinit var latestNewsAdapter: LatestNewsAdapter
     private lateinit var newsAdapter: NewsAdapter
     private val vm by viewModel<HomeViewModel>()
+    var searchListSize = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,7 +85,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
         binding.rvLatestNews.gone()
         binding.rvFilters.gone()
         binding.tvLabelSearchResults.visible()
-        binding.tvLabelSearchResults.text = "About ${newsAdapter.itemCount} results for $query"
+        binding.tvLabelSearchResults.text = "Search results for $query"
         hideProgressBar()
     }
 

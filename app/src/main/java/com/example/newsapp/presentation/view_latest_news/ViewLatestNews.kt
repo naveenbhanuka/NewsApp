@@ -13,7 +13,9 @@ import com.example.newsapp.presentation.home.HomeViewModel
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
+import com.example.newsapp.utill.extenctions.gone
 import com.example.newsapp.utill.extenctions.setActionBar
+import com.example.newsapp.utill.extenctions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ViewLatestNews : AppCompatActivity() {
@@ -38,6 +40,13 @@ class ViewLatestNews : AppCompatActivity() {
                 hideProgressBar()
                 resource.data?.let { newsResponse ->
                     viewLatestNewsAdapter.submitList(newsResponse.articles)
+                    if (newsResponse.totalResults < 0){
+                        binding.tvNoDataLatestNews.visible()
+                        binding.rvViewNews.gone()
+                    }else {
+                        binding.tvNoDataLatestNews.gone()
+                        binding.rvViewNews.visible()
+                    }
                 }
             }
 

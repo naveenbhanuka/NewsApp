@@ -13,7 +13,9 @@ import com.example.newsapp.databinding.FragmentFavouriteBinding
 import com.example.newsapp.presentation.adapters.ViewLatestNewsAdapter
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.extenctions.alert
+import com.example.newsapp.utill.extenctions.gone
 import com.example.newsapp.utill.extenctions.setActionBar
+import com.example.newsapp.utill.extenctions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavouriteFragment : Fragment() {
@@ -39,6 +41,14 @@ class FavouriteFragment : Fragment() {
 
     private fun observerGetAllArticles(result:List<Article>) {
         viewLatestNewsAdapter.submitList(result)
+
+        if (result.isEmpty()){
+            binding.tvNoDataFavouriteNews.visible()
+            binding.rvFavouriteNews.gone()
+        }else {
+            binding.tvNoDataFavouriteNews.gone()
+            binding.rvFavouriteNews.visible()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
