@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsapp.data.datasource.dto.Article
 import com.example.newsapp.databinding.ItemNewsBinding
-import com.example.newsapp.domain.model.DArticle
-import com.example.newsapp.utill.extenctions.DD_MMMM_EEEE
 import com.example.newsapp.utill.extenctions.DD_MMMM_yy
 import com.example.newsapp.utill.extenctions.toCustomDate
 

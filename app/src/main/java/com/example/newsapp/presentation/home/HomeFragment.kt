@@ -24,7 +24,6 @@ import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
 import com.example.newsapp.utill.extenctions.gone
-import com.example.newsapp.utill.extenctions.hasInternetConnection
 import com.example.newsapp.utill.extenctions.visible
 import com.example.newsapp.utill.extenctions.withNetwork
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -124,7 +123,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
 
             is Resource.Error -> {
                 hideProgressBar()
-                resource.message?.let { message ->
+                resource.message?.let {
                     alert(
                         Msg.ALERT,
                         Msg.SOMETHING_WRONG
@@ -154,7 +153,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
 
             is Resource.Error -> {
                 hideProgressBar()
-                resource.message?.let { message ->
+                resource.message?.let {
                     alert(
                         Msg.ALERT,
                         Msg.SOMETHING_WRONG
