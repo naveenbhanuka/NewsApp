@@ -10,8 +10,8 @@ class NewsUseCase(
     private val newsRepository: NewsRepository
 ) {
 
-    suspend fun getLatestNews(countryCode: String, pageNumber: Int): Response<NewsResponse> =
-        newsRepository.getLatestNews(countryCode = countryCode, pageNumber = pageNumber)
+    suspend fun getLatestNews(countryCode: String, pageNumber: Int,pageSize: Int?): Response<NewsResponse> =
+        newsRepository.getLatestNews(countryCode = countryCode, pageNumber = pageNumber, pageSize = pageSize)
 
     suspend fun getAllNews(searchQuery: String?, pageNumber: Int): Response<NewsResponse> =
         newsRepository.getAllNews(searchQuery = searchQuery, pageNumber = pageNumber)

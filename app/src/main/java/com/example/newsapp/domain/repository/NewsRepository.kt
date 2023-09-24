@@ -7,7 +7,7 @@ import retrofit2.Response
 
 interface NewsRepository {
 
-    suspend fun getLatestNews(countryCode: String, pageNumber: Int): Response<NewsResponse>
+    suspend fun getLatestNews(countryCode: String, pageNumber: Int,pageSize: Int?): Response<NewsResponse>
 
     suspend fun getAllNews(searchQuery: String?, pageNumber: Int): Response<NewsResponse>
 

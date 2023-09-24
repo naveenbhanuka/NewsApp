@@ -19,9 +19,9 @@ class HomeViewModel(
     val getAllNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var getAllNewsPage = 1
 
-    fun getLatestNews() = viewModelScope.launch {
+    fun getLatestNews(pageSize: Int?) = viewModelScope.launch {
         latestNews.postValue(Resource.Loading())
-        val response = newsUseCase.getLatestNews("us", latestNewsPage)
+        val response = newsUseCase.getLatestNews("us", latestNewsPage,pageSize)
         latestNews.postValue(handleLatestNewsResponse(response))
     }
 

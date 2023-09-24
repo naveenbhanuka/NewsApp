@@ -15,9 +15,10 @@ class NewsRepositoryImpl(
 
     override suspend fun getLatestNews(
         countryCode: String,
-        pageNumber: Int
+        pageNumber: Int,
+        pageSize: Int?
     ): Response<NewsResponse> =
-        newsApi.getLatestNews(countryCode = countryCode, pageNumber = pageNumber)
+        newsApi.getLatestNews(countryCode = countryCode, pageNumber = pageNumber, pageSize = pageSize)
 
     override suspend fun getAllNews(
         searchQuery: String?,

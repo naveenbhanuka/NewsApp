@@ -166,7 +166,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
 
     override fun onResume() {
         super.onResume()
-        vm.getLatestNews()
+        vm.getLatestNews(pageSize = 5)
     }
 
     override fun onNewsClick(article: Article) {
