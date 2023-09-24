@@ -1,6 +1,7 @@
 package com.example.newsapp.presentation.view_latest_news
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,14 +35,14 @@ class ViewLatestNews : AppCompatActivity() {
     private fun observerGetLatestNews(resource: Resource<NewsResponse>) {
         when (resource) {
             is Resource.Success -> {
-                //   hideProgressBar()
+                hideProgressBar()
                 resource.data?.let { newsResponse ->
                     viewLatestNewsAdapter.submitList(newsResponse.articles)
                 }
             }
 
             is Resource.Error -> {
-//                    hideProgressBar()
+                hideProgressBar()
                 resource.message?.let { message ->
                     alert(
                         Msg.ALERT,
@@ -54,7 +55,7 @@ class ViewLatestNews : AppCompatActivity() {
             }
 
             is Resource.Loading -> {
-                // showProgressBar()
+                showProgressBar()
             }
         }
     }
@@ -78,6 +79,14 @@ class ViewLatestNews : AppCompatActivity() {
                 false
             )
         }
+    }
+
+    private fun hideProgressBar() {
+        binding.progressCircular.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar() {
+        binding.progressCircular.visibility = View.VISIBLE
     }
 
 }

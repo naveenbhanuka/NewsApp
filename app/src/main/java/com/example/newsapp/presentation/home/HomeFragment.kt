@@ -2,7 +2,6 @@ package com.example.newsapp.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,13 +17,13 @@ import com.example.newsapp.presentation.adapters.LatestNewsAdapter
 import com.example.newsapp.presentation.adapters.NewsAdapter
 import com.example.newsapp.presentation.view_latest_news.ViewLatestNews
 import com.example.newsapp.presentation.view_news.ViewNewsActivity
-import com.example.newsapp.utill.Constant
 import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.OnItemClickListener,View.OnClickListener {
+class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.OnItemClickListener,
+    View.OnClickListener {
 
     companion object {
         const val TAG = "homeFragment"
@@ -63,14 +62,14 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
     private fun observerGetAllNews(resource: Resource<NewsResponse>) {
         when (resource) {
             is Resource.Success -> {
-                //   hideProgressBar()
+                hideProgressBar()
                 resource.data?.let { newsResponse ->
                     newsAdapter.submitList(newsResponse.articles)
                 }
             }
 
             is Resource.Error -> {
-//                    hideProgressBar()
+                hideProgressBar()
                 resource.message?.let { message ->
                     alert(
                         Msg.ALERT,
@@ -83,7 +82,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
             }
 
             is Resource.Loading -> {
-                // showProgressBar()
+                showProgressBar()
             }
         }
     }
@@ -91,16 +90,16 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
     private fun observerGetLatestNews(resource: Resource<NewsResponse>) {
         when (resource) {
             is Resource.Success -> {
-                //   hideProgressBar()
+                hideProgressBar()
                 resource.data?.let { newsResponse ->
                     latestNewsAdapter.submitList(newsResponse.articles)
                 }.also {
-                     getNews(getString(R.string.label_health))
+                    getNews(getString(R.string.label_health))
                 }
             }
 
             is Resource.Error -> {
-//                    hideProgressBar()
+                hideProgressBar()
                 resource.message?.let { message ->
                     alert(
                         Msg.ALERT,
@@ -113,7 +112,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
             }
 
             is Resource.Loading -> {
-                // showProgressBar()
+                showProgressBar()
             }
         }
     }
@@ -126,7 +125,7 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
         filters.add("Art")
         filters.add("Country")
 
-        filterAdapter = FilterAdapter(requireContext(),filters, this)
+        filterAdapter = FilterAdapter(requireContext(), filters, this)
 
         binding.rvFilters.apply {
             adapter = filterAdapter
@@ -177,16 +176,24 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener,NewsAdapter.O
     }
 
     override fun onClick(view: View?) {
-        when(view?.id){
+        when (view?.id) {
             R.id.tv_label_see_all_latest_news, R.id.iv_see_all -> gotoViewAllNews()
         }
     }
 
     private fun gotoViewAllNews() {
-        startActivity(Intent(requireContext(),ViewLatestNews::class.java))
+        startActivity(Intent(requireContext(), ViewLatestNews::class.java))
     }
 
-    private fun getNews(filters:String?){
-       vm.getAllNews(filters)
+    private fun getNews(filters: String?) {
+        vm.getAllNews(filters)
+    }
+
+    private fun hideProgressBar() {
+        binding.progressCircular.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar() {
+        binding.progressCircular.visibility = View.VISIBLE
     }
 }
