@@ -15,6 +15,7 @@ class HomeViewModel(
 
     val latestNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var latestNewsPage = 1
+    var latestNewsResponse: NewsResponse? = null
 
     val getAllNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var getAllNewsPage = 1
@@ -28,7 +29,15 @@ class HomeViewModel(
     private fun handleLatestNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if(response.isSuccessful) {
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                latestNewsPage++
+                if(latestNewsResponse == null) {
+                    latestNewsResponse = resultResponse
+                } else {
+                    val oldArticles = latestNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(latestNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
