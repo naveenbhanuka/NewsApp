@@ -2,6 +2,7 @@ package com.example.newsapp.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,9 @@ import com.example.newsapp.utill.Msg
 import com.example.newsapp.utill.Resource
 import com.example.newsapp.utill.extenctions.alert
 import com.example.newsapp.utill.extenctions.gone
+import com.example.newsapp.utill.extenctions.hasInternetConnection
 import com.example.newsapp.utill.extenctions.visible
+import com.example.newsapp.utill.extenctions.withNetwork
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.OnItemClickListener,
@@ -212,7 +215,21 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
 
     override fun onResume() {
         super.onResume()
-        vm.getLatestNews(pageSize = 5)
+        getLatestNews()
+    }
+
+    private fun getLatestNews(){
+        requireContext().withNetwork({
+            vm.getLatestNews(pageSize = 5)
+        }, {
+            alert(
+                Msg.ALERT,
+                Msg.INTERNET_ISSUE
+            ) {
+                positiveButton(Msg.BUTTON_OK) {
+                }
+            }.show()
+        })
     }
 
     override fun onNewsClick(article: Article) {
@@ -233,7 +250,17 @@ class HomeFragment : Fragment(), FilterAdapter.OnItemClickListener, NewsAdapter.
     }
 
     private fun getNews(filters: String?) {
-        vm.getAllNews(filters)
+        requireContext().withNetwork({
+            vm.getAllNews(filters)
+        }, {
+            alert(
+                Msg.ALERT,
+                Msg.INTERNET_ISSUE
+            ) {
+                positiveButton(Msg.BUTTON_OK) {
+                }
+            }.show()
+        })
     }
 
     private fun hideProgressBar() {

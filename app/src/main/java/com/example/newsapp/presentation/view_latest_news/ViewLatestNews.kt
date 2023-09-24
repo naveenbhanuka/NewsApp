@@ -16,6 +16,7 @@ import com.example.newsapp.utill.extenctions.alert
 import com.example.newsapp.utill.extenctions.gone
 import com.example.newsapp.utill.extenctions.setActionBar
 import com.example.newsapp.utill.extenctions.visible
+import com.example.newsapp.utill.extenctions.withNetwork
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ViewLatestNews : AppCompatActivity() {
@@ -31,7 +32,22 @@ class ViewLatestNews : AppCompatActivity() {
 
         initUI()
         vm.latestNews.observe(this, Observer { observerGetLatestNews(it) })
-        vm.getLatestNews(null)
+        getAllLatestNews()
+
+    }
+
+    private fun getAllLatestNews() {
+        withNetwork({
+            vm.getLatestNews(null)
+        }, {
+            alert(
+                Msg.ALERT,
+                Msg.INTERNET_ISSUE
+            ) {
+                positiveButton(Msg.BUTTON_OK) {
+                }
+            }.show()
+        })
     }
 
     private fun observerGetLatestNews(resource: Resource<NewsResponse>) {

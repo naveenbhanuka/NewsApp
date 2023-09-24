@@ -16,6 +16,7 @@ object Msg {
     const val SOMETHING_WRONG = "Something went wrong..."
     const val SUCCESS = "Success"
     const val SAVE_TO_FAVOURITE = "Successfully added to Favourites"
+    const val INTERNET_ISSUE = "Network connection not available."
 }
 
 object RequestCodes {
