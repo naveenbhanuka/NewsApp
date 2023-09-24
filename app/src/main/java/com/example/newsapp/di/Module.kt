@@ -11,6 +11,7 @@ import com.example.newsapp.domain.usecase.UserUseCase
 import com.example.newsapp.presentation.favourite.FavouriteViewModel
 import com.example.newsapp.presentation.home.HomeViewModel
 import com.example.newsapp.presentation.login.LoginViewModel
+import com.example.newsapp.presentation.profile.ProfileViewModel
 import com.example.newsapp.presentation.register.RegisterViewModel
 import com.example.newsapp.presentation.view_news.ViewNewsViewModel
 import org.koin.android.ext.koin.androidContext
@@ -45,6 +46,7 @@ val viewModelModule: Module = module {
     viewModel { HomeViewModel(newsUseCase = get()) }
     viewModel { ViewNewsViewModel(newsUseCase = get()) }
     viewModel { FavouriteViewModel(newsUseCase = get()) }
+    viewModel { ProfileViewModel() }
 }
 
 val useCaseModule: Module = module {

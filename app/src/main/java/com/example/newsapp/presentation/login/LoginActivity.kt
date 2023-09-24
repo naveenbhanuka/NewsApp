@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun login() {
         val email = binding.editEmail.text.toString()
         val password = binding.editPassword.text.toString()
-        vm.loginUser(email = email, password = password)
+        vm.loginUser(context = this, email = email, password = password)
     }
 
     private fun isValidForm(): Boolean {

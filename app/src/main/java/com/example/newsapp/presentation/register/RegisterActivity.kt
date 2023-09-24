@@ -172,6 +172,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val email = binding.editEmail.text.toString()
         val password = binding.editPassword.text.toString()
 
-        vm.registerUser(firstName = firstName, lastName = lastName, email = email, password = password)
+        vm.registerUser(context = this, firstName = firstName, lastName = lastName, email = email, password = password)
     }
 }
