@@ -25,16 +25,10 @@ fun EditText.validate(message: String, validator: (String) -> Boolean): Boolean 
     return validator(this.getString())
 }
 
-/**
- * @return String value of the EditTextView
- * */
 fun EditText.getString(): String {
     return this.text.toString()
 }
 
-/**
- * @return Trimmed String value of the EditTextView
- * */
 fun EditText.getStringTrim(): String {
     return this.getString().trim()
 }

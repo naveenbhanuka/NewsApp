@@ -7,12 +7,7 @@ import java.util.Locale
 
 
 const val YYYY_MM_DD = "yyyy-MM-dd"
-const val HH_MM = "h:mm a"
-const val HH_MM_ss = "HH:mm:ss"
-const val HH_MM_s = "h:mm:ss"
-const val DD_MMMM_EEEE = "dd MMMM, EEEE"
 const val DD_MMMM_yy = "dd MMMM yyyy"
-const val DD_MMM_yy = "dd MMM yyyy"
 
 
 fun String.toDate(): Date? {
